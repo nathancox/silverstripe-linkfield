@@ -1,4 +1,4 @@
-SilverStripe ModifiedTableField
+SilverStripe LinkField
 ===================================
 
 LinkField creates a composite field with radio buttons that let the user set a URL by choosing between a text field and a site tree dropdown fields.  Like the fields on a RedirectorPage, but packaged in to one field object for convenience.
