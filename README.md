@@ -7,7 +7,9 @@ It stores the result as a string (eg to a Varchar).  If the user chooses a page 
 
 [sitetree_link id=2]
 
-The problem is that means the database field could contain either a URL or a shortcode, so output needs to be parsed by the shortcode filter, which can be done with LinkField::link_url($this->URL);
+That means the database field could contain either a URL or a shortcode, so output needs to be parsed by the shortcode filter, which can be done with 
+
+LinkField::link_url($this->FieldName);
 
 
 Maintainer Contacts
@@ -47,6 +49,7 @@ function getCMSFields_forPopup() {
 	...
 	
 	$fields->addFieldToTab('Root.Content.URL', $urlField = new LinkField('URL', 'URL to link to'));
+	// optionally set the labels for the fields
 	$urlField->setConfig(array(
 		'localLabel' => 'A page on this site',
 		'remoteLabel' => 'Another site or URL'
