@@ -13,8 +13,6 @@ class LinkField extends CompositeField {
 		$this->title = $title;
 		
 		parent::__construct($this->fieldArray());
-		
-	//	Requirements::css(SAPPHIRE_DIR . '/css/SelectionGroup.css');
 	}
 	
 	
@@ -28,7 +26,6 @@ class LinkField extends CompositeField {
 		foreach($paramOne as $key => $value) {
 			$this->config[$key] = $value;
 		}
-		
 	}
 	
 	function getConfig($name) {
@@ -36,30 +33,7 @@ class LinkField extends CompositeField {
 	}
 	
 	
-	/*
 	function FieldHolder() {
-		$fs = $this->FieldSet();
-		$idAtt = isset($this->id) ? " id=\"{$this->id}\"" : '';
-		$className = ($this->columnCount) ? "field CompositeField {$this->extraClass()} multicolumn" : "field CompositeField {$this->extraClass()}";
-		$content = "<div class=\"$className\"$idAtt>\n";
-		
-		foreach($fs as $subfield) {
-			if($this->columnCount) {
-				$className = "column{$this->columnCount}";
-				if(!next($fs)) $className .= " lastcolumn";
-				$content .= "\n<div class=\"{$className}\">\n" . $subfield->FieldHolder() . "\n</div>\n";
-			} else if($subfield){
-				$content .= "\n" . $subfield->FieldHolder() . "\n";
-			}
-		}
-		$content .= "</div>\n";
-				
-		return $content;
-	}
-	*/
-	
-	function FieldHolder() {
-	//	Requirements::javascript(THIRDPARTY_DIR . '/jquery/jquery.js');
 		Requirements::javascript(THIRDPARTY_DIR.'/jquery-livequery/jquery.livequery.js');   
 		Requirements::javascript('linkfield/javascript/LinkField.js');
 		Requirements::css('linkfield/css/LinkField.css');
@@ -69,7 +43,6 @@ class LinkField extends CompositeField {
 	
 	function fieldArray() {
 		$items = array();
-		
 		$localField = new TreeDropdownField($this->name."_local", $this->getConfig('localLabel'), $this->getConfig('localPageType'));
 		$items['local'] = $localField;
 
@@ -87,11 +60,7 @@ class LinkField extends CompositeField {
 	}
 	
 	function FieldSet() {
-		$items = parent::FieldSet()->toArray();
-				
-//		$localField->isCurrent = false;
-
-//		$remoteField->isCurrent = false;
+		$items = $this->fieldArray();
 		
 		$linkType = $this->linkType();
 
@@ -128,10 +97,6 @@ class LinkField extends CompositeField {
 
 	function dataValue() {
 		$fields = $this->fieldArray();
-		
-	//	info($this->value);
-	//	info($_REQUEST);
-	//	die();
 		
 		if (isset($fields[$this->value])) {
 			$fieldToUse = $fields[$this->value];
